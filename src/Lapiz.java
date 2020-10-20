@@ -1,19 +1,22 @@
+import java.awt.*;
+import java.util.Objects;
 
 
-public class Lapiz{
-    private String col;
+public class Lapiz implements Comparable<Lapiz>{
+
+    private int col;
     private float gru;
 
-    public Lapiz (String color, float grueso){
-        col = color;
-        gru = grueso;
+    public Lapiz (int color, float grueso){
+        this.col = color;
+        this.gru = grueso;
     }
 
-    public String getCol() {
+    public int getCol() {
         return col;
     }
 
-    public void setCol(String col) {
+    public void setCol(int col) {
         this.col = col;
     }
 
@@ -25,7 +28,10 @@ public class Lapiz{
         this.gru = gru;
     }
 
-
+    @Override
+    public int compareTo(Lapiz lapiz) {
+        return 0;
+    }
 
     @Override
     public String toString() {
@@ -35,5 +41,18 @@ public class Lapiz{
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lapiz lapiz = (Lapiz) o;
+        return Float.compare(lapiz.gru, gru) == 0 &&
+                Objects.equals(col, lapiz.col);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(col, gru);
+    }
 
 }
